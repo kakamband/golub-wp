@@ -12,30 +12,41 @@ class GolubInitialize
      */
     public function register()
     {
-        add_action('init',array($this,'customPostType'));
         add_action('admin_enqueue_scripts',array($this,'enqueue'));
         add_action('admin_menu',array($this,'golubAdminPages'));
+        add_filter('plugin_action_links_'.PLUGIN_NAME,array($this,'golubSettingsLink'));
 
     }
-
 
     /**
-     * Register the custom post type
+     * @param $links
+     * @return mixed
+     * return customized golub settings links
      */
-    public function customPostType()
+    public function golubSettingsLink($links)
     {
-        register_post_type('credentials',['public' => true,'label' => 'Credentials']);
+
+        $go_lub_settings_links = '<a href="options-general.php?page=golub_plugin_admin_slug">Settings</a>';
+
+        array_push($links,$go_lub_settings_links);
+        return $links;
     }
 
+    /**
+     *add golub admin page links
+     */
     public function golubAdminPages()
     {
 
-        add_menu_page('Golub Plugin','Credentials','manage_options',GOLUB_SLUG,array($this,'golubAdminIndex'),'dashicons-format-status',110);
+        add_menu_page('Golub Plugin','GoLub','manage_options',GOLUB_SLUG,array($this,'golubAdminIndex'),'dashicons-format-status',110);
     }
 
+    /**
+     * Define Admin template index
+     */
     public function golubAdminIndex()
     {
-
+        require_once( GOLUB__PLUGIN_DIR . 'templates/admin.php' );
     }
 
 

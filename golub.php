@@ -47,6 +47,7 @@ if ( !function_exists( 'add_action' ) ) {
 /**
  * Defining Plugin Version
  */
+define( 'PLUGIN_NAME', plugin_basename(__FILE__) );
 define( 'GOLUB_VERSION', '1.0' );
 define( 'GOLUB_SLUG', 'golub_plugin_admin_slug' );
 define( 'GOLUB_MINIMUM_WP_VERSION', '4.0' );
