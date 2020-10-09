@@ -8,27 +8,23 @@
  *
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
 
-class uninstall{
-
+class uninstall
+{
     public function uninstall()
     {
-        if (! defined('WP_UNINSTALL_PLUGIN')){
+        if (! defined('WP_UNINSTALL_PLUGIN')) {
             die();
         }
 
-        $credentials= get_post(array('post_type' => 'credentials','numberposts' => -1));
+        $credentials = get_post(['post_type' => 'credentials','numberposts' => -1]);
 
-        foreach ($credentials as $credential)
-        {
-            wp_delete_post($credential->ID,true);
+        foreach ($credentials as $credential) {
+            wp_delete_post($credential->ID, true);
         }
-
-
     }
-
 }

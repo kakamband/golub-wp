@@ -1,0 +1,15 @@
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+**/.DS_Store
+.history
+.php_cs.cache
+.idea
+composer.json
+composer.lock
+.php_cs

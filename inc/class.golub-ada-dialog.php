@@ -1,11 +1,11 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-class AdaDialogSmsApi{
-
+class AdaDialogSmsApi
+{
     protected $base_url = 'https://digitalreachapi.dialog.lk/';
     protected $api_url = 'refresh_token.php';
     protected $api_authentication_url = 'refresh_token.php';
@@ -34,9 +34,9 @@ class AdaDialogSmsApi{
     }
 
 
-    public function golubSendAdaMessageReuqest($start_time,$end_time,$customer_number,$message)
+    public function golubSendAdaMessageReuqest($start_time, $end_time, $customer_number, $message)
     {
-            return $this->apiAuthentication();
+        return $this->apiAuthentication();
     }
 
     /**
@@ -45,24 +45,26 @@ class AdaDialogSmsApi{
 
     private function apiAuthentication()
     {
-        $dialog__ada_token = get_transient( 'golub_ada_dialog_token' );
-        if (false == $dialog__ada_token){
-            $http =new GolubHttp();
-            $request = $http->goLubApiPost($this->getApiAuthenticationUrl(),$this->authenticationData(),$this->apiAuthenticationHeaders());
+        $dialog__ada_token = get_transient('golub_ada_dialog_token');
+        if (false == $dialog__ada_token) {
+            $http = new GolubHttp();
+            $request = $http->goLubApiPost($this->getApiAuthenticationUrl(), $this->authenticationData(), $this->apiAuthenticationHeaders());
             $token = $http->goLubApiReponseBody($request);
-            set_transient('golub_ada_dialog_token',$token,HOUR_IN_SECONDS);
+            set_transient('golub_ada_dialog_token', $token, HOUR_IN_SECONDS);
+
             return  $token;
         }
+
         return  $dialog__ada_token;
     }
 
 
     private function apiAuthenticationHeaders()
     {
-        return array(
-            "Content-Type" =>"application/json",
-            "Accept" =>"application/json",
-        );
+        return [
+            "Content-Type" => "application/json",
+            "Accept" => "application/json",
+        ];
     }
 
     /**
@@ -71,11 +73,10 @@ class AdaDialogSmsApi{
      */
     private function authenticationData()
     {
-        return array(
+        return [
             'u_name' => $this->user_name,
             'passwd' => $this->password,
-        );
-
+        ];
     }
 
 
@@ -84,8 +85,10 @@ class AdaDialogSmsApi{
      * @return $this
      * Set thie Base Url
      */
-    protected function setBaseUrl($base_url){
+    protected function setBaseUrl($base_url)
+    {
         $this->base_url = $base_url;
+
         return $this;
     }
 
@@ -119,6 +122,7 @@ class AdaDialogSmsApi{
     protected function setApiUrl($api_url)
     {
         $this->api_url = $api_url;
+
         return $this;
     }
 
@@ -130,5 +134,4 @@ class AdaDialogSmsApi{
     {
         return $this->api_url;
     }
-
 }

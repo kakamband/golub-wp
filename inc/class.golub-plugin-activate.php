@@ -3,7 +3,7 @@
  * Copyright (c) 2020. Golub WP-Core Developed By Keshan-Sandeepa
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
@@ -18,8 +18,6 @@ class golubPluginActivate
      */
     public static function activate()
     {
-
         flush_rewrite_rules();
-
     }
 }
