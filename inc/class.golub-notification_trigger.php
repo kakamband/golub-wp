@@ -24,19 +24,24 @@ class GolubActionsTrigger
 
     public function SendGolubWCProcessingAlertToCustomer($order_id)
     {
+
         $this->GolubSendSms($order_id,'processing');
     }
 
 
     private function GolubSendSms($order_id,$status)
     {
+
+
         $order_details = new WC_Order($order_id);
-        var_dump($order_details);
+
         $message = $this->defaultOrderProcessingSms($order_id,'PROCESSING');
         $this->reformatPhoneNumbers($order_details->get_billing_phone());
         $ada_dialog = new AdaDialogSmsApi();
-        die($ada_dialog->golubSendAdaMessageReuqest());
-        //Get the underline SMS API From the Class
+//        var_dump($ada_dialog->golubSendAdaMessageReuqest());
+
+        die();
+
         //Send the SMS
 
     }

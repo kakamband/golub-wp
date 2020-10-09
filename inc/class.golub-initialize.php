@@ -32,11 +32,13 @@ class GolubInitialize
      */
 
 
-  public function goLubAdminSettings() {
 
-        register_setting( 'golub-api', 'golub_api_options_sms_carrier',['type'=> 'string','$description' => 'SMS API Carrier','sanitize_callback' => 'sanitize_text_field']);
-        register_setting( 'golub-api', 'golub_api_options_sms_user_name',['type'=> 'string','$description' => 'SMS User Name','sanitize_callback' => 'sanitize_text_field']);
-        register_setting( 'golub-api', 'golub_api_options_sms_user_password',['type'=> 'string','$description' => 'SMS User Name','sanitize_callback' => 'sanitize_text_field'] );
+    public function goLubAdminSettings() {
+
+        register_setting( 'golub-api', 'golub_api_options_sms_carrier',array('type'=> 'string','$description' => 'SMS API Carrier','sanitize_callback' => 'sanitize_text_field'));
+        register_setting( 'golub-api', 'golub_api_options_sms_user_name',array('type'=> 'string','$description' => 'SMS User Name','sanitize_callback' => 'sanitize_text_field'));
+        register_setting( 'golub-api', 'golub_api_options_sms_user_password',array('type'=> 'string','$description' => 'SMS User Name','sanitize_callback' => 'sanitize_text_field') );
+        register_setting( 'golub-api', 'golub_api_options_text_masking',array('type'=> 'string','$description' => 'MT Port Text Masking','sanitize_callback' => 'sanitize_text_field') );
 
         add_settings_section('golub-authentication-setting-section','Settings',array($this,'goLubSectionEcho'),'golub-admin-page');
 
@@ -44,47 +46,61 @@ class GolubInitialize
             'golub-api-options-sms-carrier', // As of WP 4.6 this value is used only internally.
             // Use $args' label_for to populate the id inside the callback.
             __( 'Sms Service', 'Sms Service' ),
-            [$this,'golubApiOptionsSmsCarrier'],
+            array($this,'golubApiOptionsSmsCarrier'),
             'golub-admin-page',
             'golub-authentication-setting-section',
-            [
-                'label_for'         => 'go_lub_sms_carrier',
+            array(
+                 'label_for'         => 'go_lub_sms_carrier',
                 'class'             => 'wporg_row',
                 'wporg_custom_data' => 'custom',
-            ]
+                )
+
         );
 
         add_settings_field(
             'golub-api-options-user-name', // As of WP 4.6 this value is used only internally.
             // Use $args' label_for to populate the id inside the callback.
             __( 'User Name', 'User Name' ),
-            [$this,'golubOptionUserName'],
+            array($this,'golubOptionUserName'),
             'golub-admin-page',
             'golub-authentication-setting-section',
-            [
+            array(
                 'label_for'         => 'go_lub_sms_carrier',
                 'class'             => 'wporg_row',
                 'wporg_custom_data' => 'custom',
-            ]
+            )
         );
 
         add_settings_field(
             'golub-api-options-user-password', // As of WP 4.6 this value is used only internally.
             // Use $args' label_for to populate the id inside the callback.
             __( 'Password', 'Password' ),
-            [$this,'golubOptionUserPassword'],
+            array($this,'golubOptionUserPassword'),
             'golub-admin-page',
             'golub-authentication-setting-section',
-            [
+            array(
                 'label_for'         => 'go_lub_sms_carrier',
                 'class'             => 'wporg_row',
                 'wporg_custom_data' => 'custom',
-            ]
+            )
+        );
+
+        add_settings_field(
+            'golub-api-options-mt-port', // As of WP 4.6 this value is used only internally.
+            // Use $args' label_for to populate the id inside the callback.
+            __( 'Text Masking', 'Text Masking' ),
+            array($this,'goLubTextMasking'),
+            'golub-admin-page',
+            'golub-authentication-setting-section',
+            array(
+                'label_for'         => 'go_lub_sms_carrier',
+                'class'             => 'wporg_row',
+                'wporg_custom_data' => 'custom',
+            )
         );
 
     }
-
-  public function golubOptionUserName($args)
+    public function golubOptionUserName($args)
   {
       $options = get_option( 'golub_api_options_sms_user_name' );
       ?>
@@ -92,6 +108,13 @@ class GolubInitialize
       <?php
   }
 
+  public function goLubTextMasking($args)
+  {
+      $options = get_option( 'golub_api_options_text_masking' );
+      ?>
+      <input  id="<?php echo esc_attr( $args['label_for'] ); ?>" name="golub_api_options_text_masking" value="<?php echo isset($options)? $options : '' ?>" type="text" class="form-input" placeholder="Text Masking Name" maxlength="255">
+      <?php
+  }
   public function golubOptionUserPassword($args)
     {
         $options = get_option( 'golub_api_options_sms_user_password' );
@@ -123,7 +146,6 @@ class GolubInitialize
     {
 
         $go_lub_settings_links = '<a href="options-general.php?page=golub_plugin_admin_slug">Settings</a>';
-
         array_push($links,$go_lub_settings_links);
         return $links;
     }

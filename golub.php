@@ -70,6 +70,7 @@ define( 'GOLUB__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 require_once( GOLUB__PLUGIN_DIR . 'inc/class.golub-initialize.php' );
 require_once( GOLUB__PLUGIN_DIR . 'inc/class.golub-notification_trigger.php' );
 require_once( GOLUB__PLUGIN_DIR . 'inc/class.golub-ada-dialog.php' );
+require_once( GOLUB__PLUGIN_DIR . 'inc/class.golub-http-reset-api.php' );
 
 
 /**
@@ -87,11 +88,11 @@ if ( class_exists('GolubInitialize')){
     require_once( GOLUB__PLUGIN_DIR . 'inc/class.golub-plugin-activate.php' );
     require_once( GOLUB__PLUGIN_DIR . 'inc/class.golub-plugin-deactivate.php' );
 
-    register_activation_hook(__FILE__,['golubPluginActivate','activate']);
+    register_activation_hook(__FILE__,array('golubPluginActivate','activate'));
 
-    register_deactivation_hook(__FILE__,['golubPluginDeactivate','deactivate']);
+    register_deactivation_hook(__FILE__,array('golubPluginDeactivate','deactivate'));
 
-    register_uninstall_hook(__FILE__,['uninstall','uninstall']);
+    register_uninstall_hook(__FILE__,array('uninstall','uninstall'));
 
 
 }else{

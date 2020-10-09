@@ -31,14 +31,12 @@ class AdaDialogSmsApi{
         $this->sms_service = get_option('golub_api_options_sms_carrier');
         $this->user_name = get_option('golub_api_options_sms_user_name');
         $this->password = get_option('golub_api_options_sms_user_password');
-        $this->token_key  = get_option('golub_api_ada_token_key');
     }
 
 
-    public function golubSendAdaMessageReuqest()
+    public function golubSendAdaMessageReuqest($start_time,$end_time,$customer_number,$message)
     {
-        return $this->apiAuthentication();
-
+            return $this->apiAuthentication();
     }
 
     /**
@@ -47,22 +45,25 @@ class AdaDialogSmsApi{
 
     private function apiAuthentication()
     {
-
-       $url = $this->getApiAuthenticationUrl();
-       $data = $this->authenticationData();
-       $args = [
-           'body'        => $data,
-           'timeout'     => '5',
-           'blocking'    => true,
-           'headers'     => array(),
-           'cookies'     => array(),
-       ];
-
-        $response = wp_remote_post( $url, $args );
-
-        return wp_remote_retrieve_body($response);
+        $dialog__ada_token = get_transient( 'golub_ada_dialog_token' );
+        if (false == $dialog__ada_token){
+            $http =new GolubHttp();
+            $request = $http->goLubApiPost($this->getApiAuthenticationUrl(),$this->authenticationData(),$this->apiAuthenticationHeaders());
+            $token = $http->goLubApiReponseBody($request);
+            set_transient('golub_ada_dialog_token',$token,HOUR_IN_SECONDS);
+            return  $token;
+        }
+        return  $dialog__ada_token;
     }
 
+
+    private function apiAuthenticationHeaders()
+    {
+        return array(
+            "Content-Type" =>"application/json",
+            "Accept" =>"application/json",
+        );
+    }
 
     /**
      * @return array
@@ -70,10 +71,11 @@ class AdaDialogSmsApi{
      */
     private function authenticationData()
     {
-        return [
+        return array(
             'u_name' => $this->user_name,
             'passwd' => $this->password,
-        ];
+        );
+
     }
 
 
