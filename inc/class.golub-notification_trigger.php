@@ -68,7 +68,7 @@ class GolubActionsTrigger
     {
         $shop_name = get_bloginfo('name');
 
-        return 'Your order '.'#'.$order_id.' is now.'.$order_status.' '.'Thank you for shopping at '.$shop_name.'.';
+        return 'Your order '.'#'.$order_id.' is now.'.$order_status.'. '.'Thank you for shopping at '.$shop_name.'.';
     }
 
     public static function reformatPhoneNumbers($value)
