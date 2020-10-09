@@ -8,6 +8,11 @@
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
+
 class uninstall{
 
     public function uninstall()
