@@ -8,11 +8,8 @@ if (! defined('ABSPATH')) {
 }
 
 
-
 class golubPluginActivate
 {
-
-
     /**
      * Static Function to enable Activate Function
      */
