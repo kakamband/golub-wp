@@ -1,5 +1,5 @@
 === Golub ===
-Contributors: (@kerasl)
+Contributors: (kerasl)
 Tags: smsgateway, sms, adasms, smsgatewaybridge
 Requires at least: 5.1
 Tested up to: 5.5.1
@@ -31,6 +31,11 @@ e.g.
 5. Go there and Select your Sms Service that your going enable for woocommerce site.
 6. Add the credentials and press Save.
 7. Try to do sample Order . Within Just seconds you will receive the sms.
+
+== Frequently Asked Questions ==
+
+== Upgrade Notice ==
+
 
 == Screenshots ==
 
