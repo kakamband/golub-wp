@@ -70,8 +70,8 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 In order to Install the Plugin You must at least have below mentioned Wordpress and PHP Version.
-* [PHP 7.2 and Latest](https://ada-asia.com/reach/)
-* [Wordpress 5.2 and Latest](https://ada-asia.com/reach/)
+* [PHP 7.2 and Latest]
+* [Wordpress 5.2 and Latest]
 
 ### Installation
 
