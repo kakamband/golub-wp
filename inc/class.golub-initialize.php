@@ -113,7 +113,7 @@ class GolubInitialize
     public function golubOptionUserPassword($args)
     {
         $options = get_option('golub_api_options_sms_user_password'); ?>
-        <input style="width: 100%"  id="<?php echo esc_attr($args['label_for']); ?>" name="golub_api_options_sms_user_password" value="<?php echo isset($options)? $options : '' ?>" type="password" class="form-input" placeholder="User Name" maxlength="255">
+        <input style="width: 100%"  id="<?php echo esc_attr($args['label_for']); ?>" name="golub_api_options_sms_user_password" value="<?php echo isset($options)? $options : '' ?>" type="password" class="form-input" placeholder="Password" maxlength="255">
         <?php
     }
 
