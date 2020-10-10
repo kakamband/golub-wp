@@ -1,0 +1,46 @@
+=== Golub ===
+Contributors: (@kerasl)
+Tags: smsgateway, sms,adasms,
+Requires at least: 5.1
+Tested up to: 5.5.1
+Requires PHP: 7.2
+Stable tag: 1.1.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Golub SMS Multi GateWay Bridge For WooCommerce Wordpress Sites.
+
+== Description ==
+
+Golub main goal is to help the non tech peoples support the any sms gateway as they needed.Currently, we are supporting
+* [Ada Reach Sms Gateway](https://ada-asia.com/reach/)
+
+If you need any custom Gateway <a href="https://github.com/keshansandeepa/golub-wp/issues">Create Issue</a>.We would like to give support for customize solution.
+
+
+== Installation ==
+
+This section describes how to install the plugin and get it working.
+
+e.g.
+
+1. Download the latest release
+2. Login into Wordpress plugin Area
+3. Install the Zip File
+4. In the Admin Section You will see the Golub Section.
+5. Go there and Select your Sms Service that your going enable for woocommerce site.
+6. Add the credentials and press Save.
+7. Try to do sample Order . Within Just seconds you will receive the sms.
+
+== Screenshots ==
+
+assets/GolubPlugin.png
+
+== Changelog ==
+
+= 1.1.0 =
+* Add new styles to setting page.
+* Fixed password placeholder issue
+
+= 1.0 =
+* Initial Release.
