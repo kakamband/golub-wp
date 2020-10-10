@@ -23,7 +23,7 @@ settings_errors('golub_messages');
     <div class="mx-w-56 bg-white mx-auto br-1 box-shadow-1 mt-20">
         <div class="header_section">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
-            <img style="width: 10%" src="<?php echo plugin_dir_url( __FILE__ ) . '../assets/golubdark.png'; ?>">
+            <img style="width: 10%" src="<?php echo plugin_dir_url(__FILE__) . '../assets/golubdark.png'; ?>">
         </div>
         <div class="form-section-golub">
             <form action="options.php" method="post">
