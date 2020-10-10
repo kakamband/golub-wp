@@ -16,7 +16,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="assets/golubdark.png" alt="Logo" width="80" height="80">
+    <img src="assets/golubdark.png" alt="Logo" width="200" height="80">
   </a>
 
   <h3 align="center">Golub</h3>
@@ -114,7 +114,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [Keshan Sandeepa](https://twitter.com/KeshanSandeepa2)
+Name - [Keshan Sandeepa](https://twitter.com/KeshanSandeepa2)
 
 Project Link: [Golub](https://github.com/keshansandeepa/golub-wp)
 
