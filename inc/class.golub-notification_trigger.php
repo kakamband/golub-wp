@@ -28,8 +28,7 @@ class GolubActionsTrigger
      */
     public function SendGolubWCProcessingAlertToCustomer($order_id)
     {
-         $this->GolubSendSms($order_id, 'processing');
-
+        $this->GolubSendSms($order_id, 'processing');
     }
 
     /**
@@ -41,9 +40,9 @@ class GolubActionsTrigger
     {
         $order_details = new WC_Order($order_id);
         $message = $this->defaultOrderProcessingSms($order_id, 'Processing');
-        $customer_phone_number =$this->reformatPhoneNumbers($order_details->get_billing_phone());
+        $customer_phone_number = $this->reformatPhoneNumbers($order_details->get_billing_phone());
         $ada_dialog = new AdaDialogSmsApi();
-        $ada_dialog->golubSendAdaMessageReuqest($this->getSmsStartDate(),$this->getSmsEndDate($this->getSmsStartDate()),$customer_phone_number,$message);
+        $ada_dialog->golubSendAdaMessageReuqest($this->getSmsStartDate(), $this->getSmsEndDate($this->getSmsStartDate()), $customer_phone_number, $message);
     }
 
 
@@ -55,12 +54,14 @@ class GolubActionsTrigger
     private function getSmsEndDate($start_date)
     {
         try {
-            return date_format(date_add(new DateTime($start_date), date_interval_create_from_date_string('1 days')),
-                "Y-m-d H:i:s");
+            return date_format(
+                date_add(new DateTime($start_date), date_interval_create_from_date_string('1 days')),
+                "Y-m-d H:i:s"
+            );
         } catch (\Exception $e) {
-            $logger =new WC_Logger();
-            $message =  $e.'@at getSmsEndDate';
-            $logger->add('new-woocommerce-log-name',$message);
+            $logger = new WC_Logger();
+            $message = $e.'@at getSmsEndDate';
+            $logger->add('new-woocommerce-log-name', $message);
         }
     }
 

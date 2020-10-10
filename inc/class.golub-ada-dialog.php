@@ -52,15 +52,14 @@ class AdaDialogSmsApi
     public function golubSendAdaMessageReuqest($start_time, $end_time, $customer_number, $message)
     {
         try {
-            $authentication =$this->apiAuthentication();
+            $authentication = $this->apiAuthentication();
             $http = new GolubHttp();
-            return $http->goLubApiPost($this->getSendSmsUrl(),$this->sendSmsData($customer_number,$message,$start_time,$end_time),$this->sendSmsHeader($authentication));
 
-        }catch (\Exception $exception)
-        {
-            $logger =new WC_Logger();
-            $message =  $exception.'@at golubSendAdaMessage Request';
-            $logger->add('new-woocommerce-log-name',$message);
+            return $http->goLubApiPost($this->getSendSmsUrl(), $this->sendSmsData($customer_number, $message, $start_time, $end_time), $this->sendSmsHeader($authentication));
+        } catch (\Exception $exception) {
+            $logger = new WC_Logger();
+            $message = $exception.'@at golubSendAdaMessage Request';
+            $logger->add('new-woocommerce-log-name', $message);
         }
     }
 
@@ -75,6 +74,7 @@ class AdaDialogSmsApi
             $request = $http->goLubApiPost($this->getApiAuthenticationUrl(), $this->authenticationData(), $this->apiAuthenticationHeaders());
             $token = $http->goLubApiReponseBody($request);
             set_transient('golub_ada_dialog_token', $token, HOUR_IN_SECONDS);
+
             return  $token['access_token'];
         }
 
@@ -103,7 +103,7 @@ class AdaDialogSmsApi
         return [
             "Content-Type" => "application/json",
             "Accept" => "application/json",
-            "Authorization" => $token
+            "Authorization" => $token,
         ];
     }
 
@@ -127,15 +127,15 @@ class AdaDialogSmsApi
      * @return array
      * Sms Data for the request
      */
-    protected function sendSmsData($customer_number,$message,$start_time,$end_time)
+    protected function sendSmsData($customer_number, $message, $start_time, $end_time)
     {
-         return array(
-             "msisdn" =>$customer_number,
+        return array(
+             "msisdn" => $customer_number,
              "channel" => "1",
              "mt_port" => $this->mt_port,
-             "s_time" =>$start_time,
+             "s_time" => $start_time,
              "e_time" => $end_time,
-             "msg" =>$message
+             "msg" => $message,
          );
     }
     /**

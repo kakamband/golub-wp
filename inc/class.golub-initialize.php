@@ -18,6 +18,7 @@ class GolubInitialize
     public function golubRegister()
     {
         $go_lub_new_action_trigger = new GolubActionsTrigger();
+        add_action('admin_enqueue_scripts', [$this,'goEnqueue']);
         add_action('admin_menu', [$this,'golubAdminPages']);
         add_action('admin_init', [$this,'goLubAdminSettings' ]);
         add_filter('plugin_action_links_'.PLUGIN_NAME, [$this,'golubSettingsLink']);
@@ -99,20 +100,20 @@ class GolubInitialize
     public function golubOptionUserName($args)
     {
         $options = get_option('golub_api_options_sms_user_name'); ?>
-      <input  id="<?php echo esc_attr($args['label_for']); ?>" name="golub_api_options_sms_user_name" value="<?php echo isset($options)? $options : '' ?>" type="text" class="form-input" placeholder="User Name" maxlength="255">
+      <input  style="width: 100%" id="<?php echo esc_attr($args['label_for']); ?>" name="golub_api_options_sms_user_name" value="<?php echo isset($options)? $options : '' ?>" type="text" class="form-input" placeholder="User Name" maxlength="255">
       <?php
     }
 
     public function goLubTextMasking($args)
     {
         $options = get_option('golub_api_options_text_masking'); ?>
-      <input  id="<?php echo esc_attr($args['label_for']); ?>" name="golub_api_options_text_masking" value="<?php echo isset($options)? $options : '' ?>" type="text" class="form-input" placeholder="Text Masking Name" maxlength="255">
+      <input style="width: 100%"  id="<?php echo esc_attr($args['label_for']); ?>" name="golub_api_options_text_masking" value="<?php echo isset($options)? $options : '' ?>" type="text" class="form-input" placeholder="Text Masking Name" maxlength="255">
       <?php
     }
     public function golubOptionUserPassword($args)
     {
         $options = get_option('golub_api_options_sms_user_password'); ?>
-        <input  id="<?php echo esc_attr($args['label_for']); ?>" name="golub_api_options_sms_user_password" value="<?php echo isset($options)? $options : '' ?>" type="password" class="form-input" placeholder="User Name" maxlength="255">
+        <input style="width: 100%"  id="<?php echo esc_attr($args['label_for']); ?>" name="golub_api_options_sms_user_password" value="<?php echo isset($options)? $options : '' ?>" type="password" class="form-input" placeholder="User Name" maxlength="255">
         <?php
     }
 
@@ -122,7 +123,7 @@ class GolubInitialize
 
       <select
               id="<?php echo esc_attr($args['label_for']); ?>"
-              name="golub_api_options_sms_carrier" class="form-input">
+              name="golub_api_options_sms_carrier" class="form-input" style="width: 100%" >
 
           <option value="ada-dialog-api" <?php echo isset($options) ? (selected($options, 'ada-dialog-api', false)) : (''); ?>>
               <?php esc_html_e('ADA DIALOG API', 'default'); ?>
@@ -165,5 +166,11 @@ class GolubInitialize
     {
         require_once(GOLUB__PLUGIN_DIR . 'templates/admin.php');
     }
-
+    /**
+     * add enqueue for the admin panel
+     */
+    public function goEnqueue()
+    {
+        wp_enqueue_style('golubappstyle', plugins_url('golub/assets/golub.css', GOLUB__PLUGIN_DIR));
+    }
 }
