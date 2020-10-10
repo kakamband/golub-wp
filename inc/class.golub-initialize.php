@@ -11,7 +11,6 @@ if (! defined('ABSPATH')) {
 class GolubInitialize
 {
 
-
     /**
      * Register the action that needed for golub plugin
      */
@@ -29,9 +28,6 @@ class GolubInitialize
      * @return mixed
      * return customized golub settings links
      */
-
-
-
     public function goLubAdminSettings()
     {
         register_setting('golub-api', 'golub_api_options_sms_carrier', ['type' => 'string','$description' => 'SMS API Carrier','sanitize_callback' => 'sanitize_text_field']);
@@ -97,6 +93,11 @@ class GolubInitialize
             ]
         );
     }
+
+    /**
+     * @param $args
+     * Options User Name
+     */
     public function golubOptionUserName($args)
     {
         $options = get_option('golub_api_options_sms_user_name'); ?>
@@ -104,12 +105,20 @@ class GolubInitialize
       <?php
     }
 
+    /**
+     * @param $args
+     * Options Text Masking
+     */
     public function goLubTextMasking($args)
     {
         $options = get_option('golub_api_options_text_masking'); ?>
       <input style="width: 100%"  id="<?php echo esc_attr($args['label_for']); ?>" name="golub_api_options_text_masking" value="<?php echo isset($options)? $options : '' ?>" type="text" class="form-input" placeholder="Text Masking Name" maxlength="255">
       <?php
     }
+    /**
+     * @param $args
+     * Options User Password
+     */
     public function golubOptionUserPassword($args)
     {
         $options = get_option('golub_api_options_sms_user_password'); ?>
@@ -117,6 +126,10 @@ class GolubInitialize
         <?php
     }
 
+    /**
+     * @param $args
+     * Options golub Api
+     */
     public function golubApiOptionsSmsCarrier($args)
     {
         $options = get_option('golub_api_options_sms_carrier'); ?>
@@ -136,6 +149,12 @@ class GolubInitialize
       <?php
     }
 
+
+    /**
+     * @param $links
+     * @return mixed
+     * Golub Settings Link
+     */
     public function golubSettingsLink($links)
     {
         $go_lub_settings_links = '<a href="options-general.php?page=golub_plugin_admin_slug">Settings</a>';
@@ -144,6 +163,10 @@ class GolubInitialize
         return $links;
     }
 
+    /**
+     * @param $args
+     * Add Section Echo
+     */
     public function goLubSectionEcho($args)
     {
         ?>

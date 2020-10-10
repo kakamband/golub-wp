@@ -48,6 +48,7 @@ class AdaDialogSmsApi
      * @param $customer_number
      * @param $message
      * Send Golub Sms Request
+     * @return bool|string
      */
     public function golubSendAdaMessageReuqest($start_time, $end_time, $customer_number, $message)
     {

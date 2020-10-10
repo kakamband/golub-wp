@@ -9,6 +9,13 @@ if (! defined('ABSPATH')) {
 
 class GolubHttp
 {
+    /**
+     * @param $url
+     * @param array $data
+     * @param array $headers
+     * @return bool|string
+     * Go Lub Api Post
+     */
     public function goLubApiPost($url, array$data, array $headers)
     {
         $curl = curl_init($url);
@@ -22,6 +29,11 @@ class GolubHttp
         return $response;
     }
 
+    /**
+     * @param array $raw_headers
+     * @return array
+     * Add Http Parse Headers
+     */
     protected function httpParseHeaders(array $raw_headers)
     {
         $raw_headers_out_put = [];
@@ -33,16 +45,31 @@ class GolubHttp
         return $raw_headers_out_put;
     }
 
+    /**
+     * @param array $body
+     * @return false|string
+     * Add En Code Request Body
+     */
     protected function enCodeRequestBody(array $body)
     {
         return json_encode($body);
     }
 
+    /**
+     * @param array $body
+     * @return false|string
+     * Add Golub Api Response Body
+     */
     public function goLubApiReponseBody($body)
     {
         return $this->decodeResponseBody($body);
     }
 
+    /**
+     * @param array $body
+     * @return false|string
+     * Add DecodeResponseBody
+     */
     protected function decodeResponseBody($body)
     {
         return json_decode($body, true);

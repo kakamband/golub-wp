@@ -46,11 +46,20 @@ class GolubActionsTrigger
     }
 
 
+    /**
+     * @return false|string
+     * Get Sms Start Date
+     */
     private function getSmsStartDate()
     {
         return $start_date = date("Y-m-d H:i:s");
     }
 
+    /**
+     * @param $start_date
+     * @return false|string
+     * Get Sms End Date
+     */
     private function getSmsEndDate($start_date)
     {
         try {
@@ -65,6 +74,13 @@ class GolubActionsTrigger
         }
     }
 
+    /**
+     * @param $order_id
+     * @param $order_status
+     * @param null $shop_name
+     * @return string
+     * Order Processing Default Sms
+     */
     private function defaultOrderProcessingSms($order_id, $order_status, $shop_name = null)
     {
         $shop_name = get_bloginfo('name');
@@ -72,6 +88,11 @@ class GolubActionsTrigger
         return 'Your order '.'#'.$order_id.' is now.'.$order_status.'. '.'Thank you for shopping at '.$shop_name.'.';
     }
 
+    /**
+     * @param $value
+     * @return string|string[]|null
+     * Reformat the phone number
+     */
     public static function reformatPhoneNumbers($value)
     {
         $number = preg_replace("/[^0-9]/", "", $value);

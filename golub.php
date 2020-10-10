@@ -40,25 +40,36 @@
 */
 
 
+/**
+ * Exit if accessed directly.
+ */
+
 if (! defined('ABSPATH')) {
-    exit; // Exit if accessed directly.
+    exit;
 }
+
+/**
+ * Prohibited the Direct actions
+ */
 
 if (! function_exists('add_action')) {
     echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.';
     exit;
 }
+/**
+ * Check if the Woocommerce Install
+ */
 if (! in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
     echo 'Hi there!  You Need To Install WooCommerce In Order To Function GoLub SMS GateWay plugin.';
     exit();
 }
 /**
- * Defining Plugin Version
+ * Defining Plugin Version Other Details
  */
 define('PLUGIN_NAME', plugin_basename(__FILE__));
-define('GOLUB_VERSION', '1.0');
+define('GOLUB_VERSION', '1.1.0');
 define('GOLUB_SLUG', 'golub_plugin_admin_slug');
-define('GOLUB_MINIMUM_WP_VERSION', '4.0');
+define('GOLUB_MINIMUM_WP_VERSION', '5.2');
 define('GOLUB__PLUGIN_DIR', plugin_dir_path(__FILE__));
 
 
@@ -76,7 +87,6 @@ require_once(GOLUB__PLUGIN_DIR . 'inc/class.golub-http-reset-api.php');
 /**
  * Checking if the GolubInitialize Class Exist
  */
-
 
 if (class_exists('GolubInitialize')) {
     $golub_plugin = new GolubInitialize();
