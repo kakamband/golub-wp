@@ -18,7 +18,6 @@ class GolubInitialize
     public function golubRegister()
     {
         $go_lub_new_action_trigger = new GolubActionsTrigger();
-        add_action('admin_enqueue_scripts', [$this,'goEnqueue']);
         add_action('admin_menu', [$this,'golubAdminPages']);
         add_action('admin_init', [$this,'goLubAdminSettings' ]);
         add_filter('plugin_action_links_'.PLUGIN_NAME, [$this,'golubSettingsLink']);
@@ -39,7 +38,7 @@ class GolubInitialize
         register_setting('golub-api', 'golub_api_options_sms_user_password', ['type' => 'string','$description' => 'SMS User Name','sanitize_callback' => 'sanitize_text_field']);
         register_setting('golub-api', 'golub_api_options_text_masking', ['type' => 'string','$description' => 'MT Port Text Masking','sanitize_callback' => 'sanitize_text_field']);
 
-        add_settings_section('golub-authentication-setting-section', 'Settings', [$this,'goLubSectionEcho'], 'golub-admin-page');
+        add_settings_section('golub-authentication-setting-section', 'General Settings', [$this,'goLubSectionEcho'], 'golub-admin-page');
 
         add_settings_field(
             'golub-api-options-sms-carrier', // As of WP 4.6 this value is used only internally.
@@ -147,7 +146,7 @@ class GolubInitialize
     public function goLubSectionEcho($args)
     {
         ?>
-            <p id="<?php echo esc_attr($args['id']); ?>"><?php esc_html_e(''); ?></p>
+            <p id="<?php echo esc_attr($args['id']); ?>"><?php esc_html_e('Add Your SMS Gateway Authentication Details'); ?></p>
             <?php
     }
 
@@ -166,12 +165,5 @@ class GolubInitialize
     {
         require_once(GOLUB__PLUGIN_DIR . 'templates/admin.php');
     }
-    /**
-     * add enqueue for the admin panel
-     */
-    public function goEnqueue()
-    {
-        wp_enqueue_style('golubappstyle', plugins_url('golub/assets/golub.css', GOLUB__PLUGIN_DIR));
-        wp_enqueue_style('golubappscript', plugins_url('golub/assets/golub.js', GOLUB__PLUGIN_DIR));
-    }
+
 }
