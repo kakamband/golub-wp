@@ -1,2 +1,3 @@
 # golub-wp
-Golub Wordpress Plugin For WooCommerce 
+Golub SMS Muti GateWay Bridge. Wordpress Plugin For WooCommerce.
+
